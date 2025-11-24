@@ -1,7 +1,17 @@
 import '../styles/Login.css';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
-export default function Login({onLogin}) {
+export function Login({onLogin}) {
+    useEffect(() => {
+        fetch('/login') // ruta enpoint login, same example for others components with flask
+          .then(res => res.json())
+          .then(data => console.log(data))
+          .catch(err => console.error(err))
+    
+      }, [])  
+  
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
@@ -12,10 +22,10 @@ export default function Login({onLogin}) {
     setLoading(true)
 
     try {
-      const res = await fetch('/login', { // o '/api/login' si tu ruta es así
+      const res = await fetch('/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password_encrypted: password })
       })
 
       const data = await res.json()
@@ -58,9 +68,10 @@ export default function Login({onLogin}) {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <div className="login-options">
-              <a href="/sign_up">No tienes cuenta?</a>
-              <a href="">Olvidaste la contraseña?</a>
+            <div>
+              <a href="/register">No tienes cuenta?</a>
+              <br />
+              <a href="/forgot">Olvidaste la contraseña?</a>
             </div>
             <button type="submit" disabled={loading}>
               {loading ? 'Ingresando...' : 'Login'}

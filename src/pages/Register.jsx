@@ -5,7 +5,7 @@ import '../styles/Register.css'
 export function Register() {
 
   useEffect(() => {
-    fetch('/api/users') // ruta enpoint register, same example for others components with flask
+    fetch('/register') // ruta enpoint register, same example for others components with flask
       .then(res => res.json())
       .then(data => console.log(data))
       .catch(err => console.error(err))

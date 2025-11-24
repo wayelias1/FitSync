@@ -10,7 +10,7 @@ export function Home() {
           Access elite equipment, advanced strength programming, and the community that
            demands the best from you. Your next personal best is built here.</p>
 
-        <a href="/register" target="_blank" rel="noreferrer">
+        <a href="/register">
           <button type="button">Join Now</button>
         </a>
       </div>

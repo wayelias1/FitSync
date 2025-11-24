@@ -34,7 +34,7 @@ app.register_blueprint(Bp_modify, url_prefix='/api/user')
 app.register_blueprint(sign_up, url_prefix='/signup')
 app.register_blueprint(delete_user, url_prefix='/user/delete')
 app.register_blueprint(get_users, url_prefix= '/user')
-app.register_blueprint(login, url_prefix='/login')
+app.register_blueprint(login, url_prefix='/api/login')
 
 @app.route('/api/users', methods=['GET'])
 def get_all_users():

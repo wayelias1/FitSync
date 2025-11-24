@@ -1,0 +1,34 @@
+.member-welcome {
+  padding: 2rem;
+  background-color: #1a1a1a;
+  color: white;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.member-welcome h2 {
+  color: var(--accent-color);
+}
+
+.welcome-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.summary-card {
+  background-color: #2a2a2a;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--accent-color);
+}
+
+.summary-card h3 {
+  margin-top: 0;
+  color: white;
+}
+
+.summary-card p {
+  color: #ccc;
+}

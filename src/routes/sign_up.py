@@ -62,7 +62,8 @@ def signnup():
             "email": email,
             # Aquí inyectamos el hash 
             "password_encrypted": password_encrypted, 
-            "number": number
+            "number": number,
+            "id_rol": 1
         }
 
         response = supabase.table("User").insert(user_data).execute()

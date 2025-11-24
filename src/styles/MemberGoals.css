@@ -1,0 +1,45 @@
+.member-goals {
+  padding: 2rem;
+  background-color: #1a1a1a;
+  color: white;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.member-goals h2 {
+    color: var(--accent-color);
+}
+
+.goals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.goal-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.goal-name {
+  flex: 1;
+}
+
+.progress-bar {
+  width: 200px;
+  height: 10px;
+  background-color: #555;
+  border-radius: 5px;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--accent-color);
+  border-radius: 5px;
+}
+
+.progress-label {
+  font-weight: bold;
+}

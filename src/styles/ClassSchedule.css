@@ -1,0 +1,53 @@
+.class-schedule {
+  padding: 2rem;
+  background-color: #1a1a1a;
+  color: white;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.class-schedule h2 {
+    color: var(--accent-color);
+}
+
+.schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.schedule-item {
+  display: flex;
+  align-items: center;
+  background-color: #2a2a2a;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.item-time {
+  font-weight: bold;
+  width: 100px;
+}
+
+.item-name {
+  flex: 1;
+}
+
+.item-book {
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.item-book.available {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.item-book.full {
+  background-color: #555;
+  color: #aaa;
+  cursor: not-allowed;
+}
