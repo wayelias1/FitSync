@@ -2,7 +2,10 @@ from datetime import date, timedelta
 from paypalcheckoutsdk.orders import OrdersCreateRequest, OrdersCaptureRequest
 from paypalhttp import HttpError
 from keys import supabase
-from paypal_client import PayPalClient  
+from .paypal_client import PayPalClient
+import logging
+
+logger = logging.getLogger(__name__)
 
 class PaymentService(PayPalClient):
     def __init__(self, exchange_rate=24.5):
@@ -13,8 +16,9 @@ class PaymentService(PayPalClient):
     def calculate_bsd_price(self, price_usd):
         return round(price_usd * self.exchange_rate, 2)
 
-    def create_payment_intent(self, user_id, plan_id, payment_method_id):
+    def create_payment_intent(self, user_id, plan_id, payment_method_id, ip_address=None, user_agent=None):
         try:
+            logger.info(f"Creating payment intent: user={user_id} plan={plan_id} ip={ip_address} ua={user_agent}")
             plan_resp = supabase.table('subscription_plans').select('*').eq('id', plan_id).single().execute()
             if not plan_resp.data:
                 return {"message": "Plan no encontrado"}, 404
