@@ -1,34 +1,210 @@
 .member-welcome {
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
+  background-image: url("/public/img/FitSync2.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: stretch;
   padding: 2rem;
-  background-color: #1a1a1a;
-  color: white;
-  border-radius: 8px;
-  margin-bottom: 2rem;
+  position: relative;
+  margin-bottom: 3rem;
+  border-radius: 12px;
 }
 
-.member-welcome h2 {
-  color: var(--accent-color);
+/* Contenedor principal del contenido */
+.member-content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  gap: 2rem;
+  flex: 1;
 }
 
-.welcome-summary {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+.member-content h1 {
+  color: #ffffff;
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.member-content p {
+  color: #e6e6e6;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 60ch;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Contenedor para los botones de acción */
+.member-actions {
+  display: flex;
   gap: 1rem;
-  margin-top: 1rem;
+  flex-wrap: wrap;
 }
 
-.summary-card {
-  background-color: #2a2a2a;
+/* Estilos base de botones */
+.member-actions button {
+  align-self: flex-start;
+  padding: 0.8rem 1.5rem;
+  background: #ff7f50;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 220ms ease, box-shadow 220ms ease, transform 160ms ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.member-actions button:hover,
+.member-actions button:focus {
+  background: #ff946b;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28), 0 4px 12px rgba(255, 127, 80, 0.08);
+  transform: translateY(-3px);
+}
+
+.member-actions button:active {
+  transform: translateY(0);
+}
+
+.member-actions button:focus-visible {
+  outline: 3px solid rgba(255, 127, 80, 0.18);
+  outline-offset: 2px;
+}
+
+/* Botón secundario */
+.btn-secondary {
+  background: transparent !important;
+  border: 2px solid #ff7f50 !important;
+  color: #ff7f50 !important;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 127, 80, 0.1) !important;
+}
+
+/* Tarjeta de renovación en esquina inferior izquierda */
+.renewal-card {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  background: rgba(42, 42, 42, 0.95);
   padding: 1.5rem;
-  border-radius: 8px;
-  border-left: 4px solid var(--accent-color);
+  border-radius: 12px;
+  border-left: 4px solid #ff7f50;
+  backdrop-filter: blur(10px);
+  width: 280px; /* Ancho fijo */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-.summary-card h3 {
-  margin-top: 0;
-  color: white;
+.member-content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  gap: 2rem;
+  flex: 1;
+  /* El contenido se ajustará automáticamente sin chocar */
+  margin-right: 320px; /* Espacio para la tarjeta + margen */
 }
 
-.summary-card p {
+@media (max-width: 1024px) {
+  .member-content {
+    margin-right: 0;
+  }
+  
+  .renewal-card {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    margin-top: 2rem;
+    width: 100%;
+  }
+}
+
+.renewal-card h3 {
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
+}
+
+.renewal-info {
+  margin-bottom: 1rem;
+}
+
+.renewal-date {
   color: #ccc;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.renewal-days {
+  color: #ff7f50;
+  font-weight: 600;
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+/* Botón de renovar */
+.btn-renovar {
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  background: #ff7f50;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 220ms ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-renovar:hover {
+  background: #ff946b;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-renovar:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .member-content h1 {
+    font-size: 2rem;
+  }
+  
+  .member-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .member-actions button {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .renewal-card {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    margin-top: 2rem;
+    width: 100%;
+  }
+}
+
+.text {
+  background-color: rgb(109, 100, 100);
+  border-radius: 1rem;
 }

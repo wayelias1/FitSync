@@ -36,11 +36,9 @@ export function Register() {
         body: JSON.stringify(payload)
       })
       const data = await res.json()
-      if (!res.ok) throw new Error(data.message || 'Error al registrarse')
+      localStorage.setItem('auth_token', data.access_token);
 
-      // opcional: guardar user/token si el backend los devuelve
-      if (data.user) localStorage.setItem('auth_user', JSON.stringify(data.user))
-      if (data.access_token) localStorage.setItem('auth_token', data.access_token)
+// ⬅️ Opcional: redirige a home o payment después del registro
 
       // navegar a /home
       navigate('/home')
