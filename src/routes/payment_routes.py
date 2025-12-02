@@ -1,10 +1,7 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from keys import supabase 
-<<<<<<< HEAD
-=======
 from .paypal_client import PayPalClient
->>>>>>> 667904170885514b1450625cbfd7c3c324bd0b02
 from paypalcheckoutsdk.orders import OrdersCreateRequest, OrdersCaptureRequest
 from paypalhttp import HttpError
 from datetime import datetime, date
@@ -17,10 +14,6 @@ payment_service = PaymentService()
 
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 667904170885514b1450625cbfd7c3c324bd0b02
 plans_bp = Blueprint('plans', __name__)
 create_payment_bp = Blueprint('create_payment', __name__)
 user_payments_bp = Blueprint('user_payments', __name__)
@@ -103,8 +96,6 @@ def get_user_payments():
         return jsonify({"error": str(e)}), 500
 
 
-<<<<<<< HEAD
-=======
 @user_payments_bp.route('/verify', methods=['POST'])
 @jwt_required()
 def verify_and_upgrade_role():
@@ -139,7 +130,6 @@ def verify_and_upgrade_role():
         return jsonify({"success": False, "error": str(e)}), 500
 
 
->>>>>>> 667904170885514b1450625cbfd7c3c324bd0b02
 @historial_bp.route('/transactions', methods=['GET'])
 def transactions():
     limit = request.args.get('limit', type=int)
@@ -172,10 +162,6 @@ def send_alert():
     if not user_id:
         return jsonify({'error': 'user_id required'}), 400
     result = historial_service.send_expiration_alert(user_id)
-<<<<<<< HEAD
-    return jsonify(result), 200 if result.get('success') else 500
-=======
     return jsonify(result), 200 if result.get('success') else 500
 
 
->>>>>>> 667904170885514b1450625cbfd7c3c324bd0b02

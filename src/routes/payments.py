@@ -2,13 +2,10 @@ from datetime import date, timedelta, datetime
 from paypalcheckoutsdk.orders import OrdersCreateRequest, OrdersCaptureRequest
 from paypalhttp import HttpError
 from keys import supabase
-<<<<<<< HEAD
 from .paypal_client import PayPalClient
 import logging
 
 logger = logging.getLogger(__name__)
-=======
->>>>>>> 667904170885514b1450625cbfd7c3c324bd0b02
 
 
 class PaymentService:
@@ -18,32 +15,9 @@ class PaymentService:
     def calculate_bsd_price(self, price_usd):
         return round(price_usd * self.exchange_rate, 2)
 
-<<<<<<< HEAD
     def create_payment_intent(self, user_id, plan_id, payment_method_id, ip_address=None, user_agent=None):
         try:
             logger.info(f"Creating payment intent: user={user_id} plan={plan_id} ip={ip_address} ua={user_agent}")
-=======
-    def _log_audit(self, user_id, action, ip_address, user_agent, payment_id=None, metadata=None):
-        """Guarda un registro de seguridad en Supabase"""
-        try:
-            audit_data = {
-                'user_id': user_id,
-                'payment_id': payment_id,
-                'action': action,
-                'ip_address': ip_address,
-                'user_agent': user_agent,
-                'metadata': metadata or {},
-                'created_at': datetime.utcnow().isoformat()
-            }
-            supabase.table('payment_audit_log').insert(audit_data).execute()
-        except Exception as e:
-            print(f"Error guardando log de auditoría: {e}") 
-         
-
-    def create_payment_intent(self, user_id, plan_id, payment_method_id, ip_address=None, user_agent=None):
-        try:
-            # 1. Obtener el plan
->>>>>>> 667904170885514b1450625cbfd7c3c324bd0b02
             plan_resp = supabase.table('subscription_plans').select('*').eq('id', plan_id).single().execute()
             if not plan_resp.data:
                 return {"message": "Plan no encontrado"}, 404
