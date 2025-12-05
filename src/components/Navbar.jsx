@@ -20,10 +20,10 @@ export default function Navbar() {
         <span className="logo-text">FITCLUB</span>
       </div>
 
-      <div className="navbar-right">
-        <a href="/login" className="nav-link">Sign in</a>
+      <div className={`navbar-right-nav ${isMenuOpen ? '' : 'open'}`}>
+        <a href="/login" className="nav-link">Iniciar Sesión</a>
         <a href="/register">
-        <button className="join-button">JOIN NOW</button>
+        <button className="join-button">RESGISTRO</button>
         </a>
       </div>
     </nav>

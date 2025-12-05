@@ -4,14 +4,14 @@ export function Home() {
   return (
     <section className="Home">
       <div className='Home-content'>
-        <h1>FitSync the best GYM <br />where to train</h1>
+        <h1>FitSync el mejor GYM <br />para entrenar</h1>
 
-        <p>Leave the average workout behind. FitSync is the sanctuary of true competitors. 
-          Access elite equipment, advanced strength programming, and the community that
-           demands the best from you. Your next personal best is built here.</p>
+        <p>Deja atrás el entrenamiento promedio. FitSync es el santuario de los verdaderos competidores.
+           Accede a equipos de élite, programación de fuerza avanzada y la comunidad que exige lo mejor de ti.
+            Tu próxima marca personal se construye aquí..</p>
 
         <a href="/register">
-          <button type="button">Join Now</button>
+          <button type="button">Unete Ahora</button>
         </a>
       </div>
 

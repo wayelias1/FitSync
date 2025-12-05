@@ -32,7 +32,7 @@ def Login():
         #     return jsonify({"message": "Invalid email or password"}), 401
         if not user:
             # Usuario no encontrado
-            return jsonify({"message": "Email invalido or contraseña invalida"}), 401
+            return jsonify({"message": "Email invalido o contraseña invalida"}), 401
 
         user = rows[0]
         #user = user[0]
@@ -40,7 +40,7 @@ def Login():
 
         if not stored_hash or not check_password_hash(stored_hash, password_plaintext):
             # La contraseña no coincide con el hash
-            return jsonify({"message": "Email invalido or contraseña invalida"}), 401
+            return jsonify({"message": "Email invalido o contraseña invalida"}), 401
         
         # Usamos el ID del usuario como identidad para el token
         user_identity = user.get('id_user') 

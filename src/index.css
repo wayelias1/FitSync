@@ -7,7 +7,7 @@
   --text-secundario: rgba(255, 255, 255, 0.6);
   --color-especial: #ff6363;
   --color-gray: rgba(125, 125, 125, 1);
-
+  --dark-gray: rgba(42, 42, 42, 1);
 }
 
 body {

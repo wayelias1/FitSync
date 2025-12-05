@@ -207,4 +207,5 @@
 .text {
   background-color: rgb(109, 100, 100);
   border-radius: 1rem;
+  padding: 1rem;
 }

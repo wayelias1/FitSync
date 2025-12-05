@@ -7,6 +7,7 @@ import { IndexPage } from './pages/IndexPage.jsx'
 import { Profile } from './pages/Profile.jsx'
 import EliminateUserPage from './pages/EliminateUserPage.jsx'
 import { Settings } from './pages/Settings.jsx'
+import ProtectedRoutesURL from './components/ProtectedRoutesURL.jsx'
 import Payment from './pages/Payment';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
@@ -25,15 +26,19 @@ function App() {
             }}>
       <BrowserRouter>
         <Routes>
+
+          {  /* Rutas Publicas   */}
           <Route path="/" element={<Landing />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/home" element={<IndexPage />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/eliminate-user" element={<EliminateUserPage />} />
-          <Route path="/settings" element={<Settings />} />
-       
-          <Route path="/payment" element={ <Payment /> } />
+
+
+               {  /* Rutas Privadas   */}
+          <Route path="/home" element={<ProtectedRoutesURL><IndexPage /></ProtectedRoutesURL>} />
+          <Route path="/profile" element={<ProtectedRoutesURL><Profile /></ProtectedRoutesURL>} />
+          <Route path="/eliminate-user" element={<ProtectedRoutesURL><EliminateUserPage /></ProtectedRoutesURL>} />
+          <Route path="/settings" element={<ProtectedRoutesURL><Settings /></ProtectedRoutesURL>} />
+          <Route path="/payment" element={<ProtectedRoutesURL><Payment /></ProtectedRoutesURL>} />
         </Routes>
       </BrowserRouter>
     </PayPalScriptProvider>
