@@ -8,13 +8,6 @@ import Footer from '../components/Footer'
 
 export function Register() {
   const navigate = useNavigate()
-  useEffect(() => {
-   /* fetch('/sign_up') // ruta enpoint register, same example for others components with flask
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(err => console.error(err))
-*/
-  }, [])
 
   const [form, setForm] = useState({ name:'', last_name:'', email:'', number:'', password:'' })
   const [msg, setMsg] = useState(null)
@@ -38,12 +31,12 @@ export function Register() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       })
+
       const data = await res.json()
+
       localStorage.setItem('auth_token', data.access_token);
+      localStorage.setItem('auth_user', JSON.stringify(data.user));
 
-// ⬅️ Opcional: redirige a home o payment después del registro
-
-      // navegar a /home
       navigate('/home')
     } catch (err) {
       setMsg(err.message || 'Error inesperado')
