@@ -1,15 +1,67 @@
 import sys
 import os
+import re
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import create_access_token
 from werkzeug.security import generate_password_hash 
 from dotenv import load_dotenv
 from keys import supabase
+from email_validator import validate_email, EmailNotValidError
 
 sign_up = Blueprint('sign_up', __name__)
 
 load_dotenv()
+
+
+def validate_password(password_plaintext):
+    if len(password_plaintext) < 8:
+        return False, "La contraseña debe tener al menos 8 caracteres."
+    
+    if not re.search(r"[a-z]", password_plaintext):
+        return False, "La contraseña debe contener al menos una letra minúscula."
+    
+    if not re.search(r"[A-Z]", password_plaintext):
+        return False, "La contraseña debe contener al menos una letra mayúscula."
+    
+    if not re.search(r"[^a-zA-Z0-9\s]", password_plaintext):
+        return False, "La contraseña debe contener al menos un carácter especial (ej. $, @, !, *)."
+
+    return True, "Contraseña válida."
+
+
+def validate_phone_number(number):
+    
+    if not number or not isinstance(number, str):
+        return False, "El número de teléfono es requerido"
+    
+    # Eliminar espacios en blanco al inicio y final
+    number = number.strip()
+    
+    # Validar que solo contenga números
+    if not number.isdigit():
+        return False, "El número de teléfono solo debe contener dígitos del 0 al 9"
+    
+   
+    
+    # Validar prefijos permitidos
+    valid_prefixes = ['0414', '0424', '0416', '0412', '0426']
+    
+    # Verificar si el número comienza con algún prefijo válido
+    has_valid_prefix = False
+    for prefix in valid_prefixes:
+        if number.startswith(prefix):
+            has_valid_prefix = True
+            break
+    
+    if not has_valid_prefix:
+        return False, f"El número debe comenzar con uno de los prefijos: {', '.join(valid_prefixes)}"
+    
+    # Validar longitud específica por prefijo (todos deberían tener 11 dígitos)
+    if len(number) != 11:
+        return False, f"El número con prefijo {number[:4]} debe tener exactamente 11 dígitos"
+    
+    return True, "Número de teléfono válido"
 
 @sign_up.route('/', methods=['POST'])
 def signnup():
@@ -20,13 +72,26 @@ def signnup():
         email = data.get("email")  
         password_plaintext = data.get("password_encrypted") 
         number = data.get("number")
-        # Usamos 'password_plaintext' para la validación inicial
         if not all([name, last_name, email, password_plaintext, number]):
             return jsonify({"message": "Faltan campos por llenar"}), 400
+        
+        is_valid, password_message = validate_password(password_plaintext)
+        if not is_valid:
+            return jsonify({"message": password_message}), 400
+
+        is_valid_phone, phone_message = validate_phone_number(str(number))
+        if not is_valid_phone:
+            return jsonify({"message": phone_message}), 400
+
+        email = email.lower()
+        try:
+            email_check = validate_email(email, check_deliverability=True)
+            email = email_check.email
+        except EmailNotValidError as e:
+            return jsonify({"message": f" la dirección de correo no es válida: {str(e)}"}), 400
+        
         hashed_password = generate_password_hash(password_plaintext)
-        # Usamos tu variable original para almacenar el resultado del hash
         password_encrypted = hashed_password 
-        # 2. Verificación de unicidad 
         check_response = supabase.table("User").select("email, number").or_(
             f"email.eq.{email},number.eq.{number}"
         ).limit(1).execute()
@@ -37,16 +102,14 @@ def signnup():
             # Comprobamos exactamente que campo existe
             if existing_user.get('email') == email:
                 return jsonify({"message": "El email ya está registrado"}), 409
-            # Los datos de Supabase deben devolver el número como string o el tipo original
+
             if str(existing_user.get('number')) == str(number):
                 return jsonify({"message": "El número de teléfono ya está registrado"}), 409
             
-        # 3. Inserción
         user_data = {
             "name": name,
             "last_name": last_name,
             "email": email,
-            # Aquí inyectamos el hash 
             "password_encrypted": password_encrypted, 
             "number": number,
             "id_rol": 1
@@ -71,7 +134,6 @@ def signnup():
             return jsonify({"message": "error al crear usuario"}), 500
 
     except Exception as e:
-        # 4. Manejo de Errores de Supabase
         error_str = str(e)
         if "23505" in error_str:
             if "Key (email)=" in error_str or "user_email_key" in error_str.lower():
@@ -79,6 +141,5 @@ def signnup():
             
             if "Key (number)=" in error_str or "User_number_key" in error_str:
                 return jsonify({"message": "El número de teléfono ya está registrado"}), 409
-        # Manejo de cualquier otro error
         print(f"ERROR al registrar usuario: {e}")
         return jsonify({"message": str(e)}), 500

@@ -24,12 +24,6 @@ def update_user(user_id):
         if not check_user.data:
             return jsonify({"message": f"User with ID {user_id} not found"}), 404
 
-        # update_data = {
-        #     key: value 
-        #     for key, value in data.items() 
-        #     if key in allow_update
-        # }
-
         update_data = {}
         
         for key, value in data.items(): 
