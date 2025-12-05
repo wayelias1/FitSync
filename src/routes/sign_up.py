@@ -59,7 +59,7 @@ def signnup():
                 user_identity = email 
             else:
                 user_identity = user_id
-                
+ 
             access_token = create_access_token(identity=user_identity)
             
             return jsonify({
