@@ -14,11 +14,6 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
-<<<<<<< HEAD
-# Configurar logging
-=======
-
->>>>>>> 667904170885514b1450625cbfd7c3c324bd0b02
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -161,11 +156,7 @@ class PaymentService:
             if not user_id:
                 return {'success': False, 'error': 'user_id es requerido'}
                 
-<<<<<<< HEAD
-            # Obtener datos del usuario
-=======
             # Obtiene los datos del usuario
->>>>>>> 667904170885514b1450625cbfd7c3c324bd0b02
             user_response = (self.supabase.table('User')
                            .select('email, name')
                            .eq('id_user', user_id)
@@ -177,11 +168,7 @@ class PaymentService:
             user = user_response.data[0]
             expiration_data = self.check_subscription_expiration(user_id)
             
-<<<<<<< HEAD
-            # Si tu check devuelve 'expired' use eso:
-=======
             
->>>>>>> 667904170885514b1450625cbfd7c3c324bd0b02
             if expiration_data.get('expired') is True:
                 # decide si quieres enviar alerta solo si está por expirar o si está expirado
                 # si quieres enviar solo cuando esté por expirar:

@@ -55,9 +55,28 @@ def get_payment_methods():
 @create_payment_bp.route('/', methods=['POST'])
 @jwt_required()
 def create_order():
-    current_user_id = get_jwt_identity()
+    # OBTENER ID NUMÉRICO del usuario desde JWT
+    identity = get_jwt_identity()
+    print(f"DEBUG JWT Identity: {identity}")  # ← Temporal para debug
     
-    print(f"🔐 DEBUG JWT: '{current_user_id}' (type: {type(current_user_id)})")
+    # Si identity es directamente el id_user (int), úsalo
+    if isinstance(identity, int):
+        user_id = identity
+    # Si identity es un dict con id_user o id
+    elif isinstance(identity, dict):
+        user_id = identity.get('id_user') or identity.get('id')
+        if not user_id:
+            return jsonify({"error": "JWT no contiene id_user válido"}), 401
+    # Si identity es email (str), buscar ID numérico en DB
+    elif isinstance(identity, str) and '@' in identity:
+        user_resp = supabase.table('User').select('id_user').eq('email', identity).single().execute()
+        if not user_resp.data:
+            return jsonify({"error": "Usuario no encontrado"}), 404
+        user_id = user_resp.data['id_user']
+    else:
+        return jsonify({"error": "Formato de JWT inválido"}), 401
+    
+    print(f"DEBUG User ID usado: {user_id} (type: {type(user_id)})")  # ← Temporal
     
     data = request.get_json()
     if not data:
@@ -69,14 +88,12 @@ def create_order():
     if not plan_id or not payment_method_id:
         return jsonify({"error": "Missing plan_id or payment_method_id"}), 400
     
-    user_ip = request.remote_addr
     user_agent = request.headers.get('User-Agent')
-
+    
     result, status = payment_service.create_payment_intent(
-        user_id=current_user_id,
+        user_id=user_id,  # ← Ahora es SIEMPRE INTEGER
         plan_id=plan_id,
         payment_method_id=payment_method_id,
-        ip_address=user_ip,
         user_agent=user_agent
     )
     return jsonify(result), status

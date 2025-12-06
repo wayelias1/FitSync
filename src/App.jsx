@@ -10,6 +10,7 @@ import { Settings } from './pages/Settings.jsx'
 import ProtectedRoutesURL from './components/ProtectedRoutesURL.jsx'
 import Payment from './pages/Payment';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+import PaymentConfirmation from './components/PaymentConfirmation.jsx'
 
 // ⬅️ Lee credenciales desde .env
 const PAYPAL_CLIENT_ID = import.meta.env.VITE_PAYPAL_CLIENT_ID;
@@ -39,6 +40,7 @@ function App() {
           <Route path="/eliminate-user" element={<ProtectedRoutesURL><EliminateUserPage /></ProtectedRoutesURL>} />
           <Route path="/settings" element={<ProtectedRoutesURL><Settings /></ProtectedRoutesURL>} />
           <Route path="/payment" element={<ProtectedRoutesURL><Payment /></ProtectedRoutesURL>} />
+          <Route path="/payment-confirmation" element={<PaymentConfirmation />} />
         </Routes>
       </BrowserRouter>
     </PayPalScriptProvider>
