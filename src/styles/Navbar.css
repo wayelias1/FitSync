@@ -2,11 +2,12 @@
 :root {
   --background-color: #000000;
   --text-color: #ffffff;
-  --accent-color: #ff8c42; /* Naranja quemado del botón y texto activo */
+  --accent-color: #ff8c42;
+  /* Naranja quemado del botón y texto activo */
 }
 
 /*Logo*/
-.logo-img{
+.logo-img {
   width: 2rem;
   background: var(--principal);
   border-radius: 50%;
@@ -15,20 +16,42 @@
 
 /* Contenedor principal del Navbar */
 .navbar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
   background-color: var(--background-color) !important;
   display: flex;
-  justify-content: space-between; /* Distribuye los elementos (links, logo, botón) */
+  justify-content: space-between;
+  /* Distribuye los elementos (links, logo, botón) */
   align-items: center;
-  padding: 1rem 0; /* Padding superior/inferior y a los lados */
-  font-family: Arial, sans-serif; /* Puedes ajustar la fuente */
+  padding: 1rem 0;
+  /* Padding superior/inferior y a los lados */
+  font-family: Arial, sans-serif;
+  /* Puedes ajustar la fuente */
   color: var(--text-color);
+  transition: transform 0.3s ease-in-out;
+  transform: translateY(0);
+}
+
+/* Navbar visible */
+.navbar-container.visible {
+  transform: translateY(0);
+}
+
+/* Navbar oculto */
+.navbar-container.hidden {
+  transform: translateY(-100%);
 }
 
 /* Estilos para los enlaces */
 .nav-link {
   color: var(--text-color);
   text-decoration: none;
-  margin: 0 15px; /* Espacio entre los enlaces */
+  margin: 0 15px;
+  /* Espacio entre los enlaces */
   font-size: 1rem;
   font-weight: bold;
   letter-spacing: 1px;
@@ -55,14 +78,15 @@
 .navbar-logo-name {
   /* Usaremos flex para centrar el nombre si se incluye el logo */
   display: flex;
-  align-items: center; 
+  align-items: center;
 }
 
 .logo-text {
   font-size: 1.5rem;
   font-weight: bold;
   letter-spacing: 2px;
-  color: var(--text-color); /* Blanco en el ejemplo */
+  color: var(--text-color);
+  /* Blanco en el ejemplo */
 }
 
 /* Estilo para el botón "JOIN NOW" */
@@ -71,7 +95,8 @@
   color: var(--text-color);
   border: none;
   padding: 10px 25px;
-  margin-left: 20px; /* Separación de CONTACT */
+  margin-left: 20px;
+  /* Separación de CONTACT */
   font-size: 1rem;
   font-weight: bold;
   letter-spacing: 1px;
@@ -80,10 +105,11 @@
 }
 
 .join-button:hover {
-  background-color: #e67e3a; /* Un tono un poco más oscuro al pasar el ratón */
+  background-color: #e67e3a;
+  /* Un tono un poco más oscuro al pasar el ratón */
 }
 
-.navbar-menu{
+.navbar-menu {
   display: none;
 }
 
@@ -94,29 +120,38 @@
     width: 100%;
     padding: 0;
   }
-  .navbar-logo-name{
+
+  .navbar-logo-name {
     order: -1;
     padding: 2rem 1rem;
   }
-  .navbar-links, .navbar-right-nav{
+
+  .navbar-links,
+  .navbar-right-nav {
     flex-direction: column;
     gap: 1rem;
     margin-bottom: 1rem;
   }
-  .navbar-right-nav.open{
+
+  .navbar-right-nav.open {
     display: flex;
   }
-  .navbar-right-nav{
+
+  .navbar-right-nav {
     display: none;
   }
-  .navbar-right-nav button{
+
+  .navbar-right-nav button {
     margin: 0;
   }
-  .navbar-right-nav button:hover, .menu-mobile:hover {
+
+  .navbar-right-nav button:hover,
+  .menu-mobile:hover {
     transform: none;
     background: var(--color-especial);
   }
-  .navbar-menu{
+
+  .navbar-menu {
     display: block;
     margin: 1rem 0;
   }
