@@ -23,6 +23,19 @@ def signnup():
         # Usamos 'password_plaintext' para la validación inicial
         if not all([name, last_name, email, password_plaintext, number]):
             return jsonify({"message": "Faltan campos por llenar"}), 400
+        
+        allowed_domains = ["@gmail.com", "@hotmail.com", "@outlook.com", "@yahoo.com"]
+
+        email = (data.get("email") or "").strip()
+
+        # Validar formato general
+        import re
+        if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+            return jsonify({"message": "Formato de email inválido"}), 400
+
+        # Validar dominio permitido
+        if not any(email.endswith(domain) for domain in allowed_domains):
+            return jsonify({"message": "El correo debe ser de Gmail, Hotmail, Outlook o Yahoo"}), 400
         hashed_password = generate_password_hash(password_plaintext)
         # Usamos tu variable original para almacenar el resultado del hash
         password_encrypted = hashed_password 

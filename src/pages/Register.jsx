@@ -19,6 +19,25 @@ export function Register() {
     e.preventDefault()
     setMsg(null)
     setLoading(true)
+    if (!form.name.trim() || !form.last_name.trim() || !form.email.trim() || 
+    !form.number.trim() || !form.password.trim()) {
+      setMsg("Todos los campos son obligatorios");
+      setLoading(false);
+      return;
+    }
+    const allowedDomains = ["@gmail.com", "@hotmail.com", "@outlook.com", "@yahoo.com"];
+
+    const validateEmail = (email) => {
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!regex.test(email)) return false;
+      return allowedDomains.some(domain => email.endsWith(domain));
+    };
+
+    // Uso en tu handleSubmit
+    if (!validateEmail(form.email)) {
+      setMsg("El correo debe ser válido y terminar en Gmail, Hotmail, Outlook o Yahoo");
+      return;
+    }
     try {
       const payload = {
         ...form,
