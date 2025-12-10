@@ -18,7 +18,7 @@ def Login():
         if not email or not password_plaintext:
             return jsonify({"message": "Email o contraseña son necesarios"}), 400
         
-        response = supabase.table('User').select('id_user, name, email, password_encrypted').eq('email', email).limit(1).execute()
+        response = supabase.table('User').select('id_user, name, email, password_encrypted, id_rol').eq('email', email).limit(1).execute()
         # response = supabase.table('User').select('*').eq('email', email).eq('password_encrypted', password).execute()
         user = response.data
 
