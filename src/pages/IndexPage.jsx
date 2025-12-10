@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 
 export function IndexPage() {
   const [isAdmin, setIsAdmin] = useState(false);
-   useEffect(() => {
+  useEffect(() => {
     const rawUser = localStorage.getItem("auth_user");
     const user = rawUser ? JSON.parse(rawUser) : null;
     const userId = Number(user?.id_user);
@@ -29,7 +29,7 @@ export function IndexPage() {
           //console.log("Datos del usuario:", res.json());
           return res.json();
         })
-        .then((data) => {      
+        .then((data) => {
           //console.log("Datos del usuario:", data);
           //console.log(typeof data.id_rol, data.id_rol)
           setIsAdmin(Number(data.id_rol) === 4);

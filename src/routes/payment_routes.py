@@ -93,37 +93,13 @@ def verify_and_upgrade_role(user_id):
     Verifica si el usuario tiene pago completado y actualiza su rol a 2 (usuario pago)
     """
     try:
-        current_user_id = get_jwt_identity()
-        
-        # ✅ VALIDACIÓN 1: Usuario autenticado debe coincidir
-        if str(current_user_id) != str(user_id):
-            return jsonify({
-                "success": False, 
-                "error": "No autorizado",
-                "message": "No puedes actualizar el rol de otro usuario"
-            }), 403
-        
-        # ✅ VALIDACIÓN 2: Usuario existe en BD
-        user_resp = supabase.table('User').select('id_user, id_rol').eq('id_user', user_id).single().execute()
-        if not user_resp.data:
-            return jsonify({
-                "success": False,
-                "error": "Usuario no encontrado",
-                "message": f"No existe usuario con id: {user_id}"
-            }), 404
-        
-        user = user_resp.data
-        
-        # ✅ VALIDACIÓN 3: Ya tiene rol 2?
-        if user.get('id_rol') == 2:
-            return jsonify({
-                "success": True,
-                "message": "Usuario ya tiene rol pago (id_rol=2)",
-                "already_paid": True,
-                "user": user
-            }), 200
-        
-        # ✅ VALIDACIÓN 4: Existe pago completado
+        body = request.get_json() or {}
+        user_id = body.get('user_id') or get_jwt_identity()
+
+        if not user_id:
+            return jsonify({"error": "user_id required or present in JWT"}), 400
+
+    
         resp = supabase.table('payments')\
             .select('*')\
             .eq('id_user', user_id)\

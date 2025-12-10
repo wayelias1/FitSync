@@ -9,7 +9,7 @@ import Footer from '../components/Footer'
 export function Register() {
   const navigate = useNavigate()
 
-  const [form, setForm] = useState({ name:'', last_name:'', email:'', number:'', password:'' })
+  const [form, setForm] = useState({ name: '', last_name: '', email: '', number: '', password: '' })
   const [msg, setMsg] = useState(null)
   const [loading, setLoading] = useState(false)
 
@@ -66,25 +66,25 @@ export function Register() {
 
   return (
     <>
-    <div className="register-container">
-      <Link to="/" className="back-button">
-        <FaArrowLeft size={30} />
-      </Link>
-      <h1 style={{color: 'rgb(31, 29, 29)'}}>Registro</h1>
-      <form onSubmit={handleSubmit} className="register">
-        <input name="name" value={form.name} onChange={handleChange} placeholder="Nombre" />
-        <input name="last_name" value={form.last_name} onChange={handleChange} placeholder="Apellido" />
-        <input name="email" value={form.email} onChange={handleChange} placeholder="Email" />
-        <input name="number" value={form.number} onChange={handleChange} placeholder="Telefono" type="tel" />
-        <input name="password" value={form.password} onChange={handleChange} placeholder="Password" type="password" />
-        <div className='redirect-container'>
-          <a href="/login">¿Ya tienes cuenta?</a>
-        </div>
-        <button type="submit" disabled={loading}>{loading ? 'Registrando...' : 'Registrarse'}</button>
-        {msg && <p>{msg}</p>}
-      </form>
-    </div>
-    <Footer />
+      <div className="register-container">
+        <Link to="/" className="back-button">
+          <FaArrowLeft size={30} />
+        </Link>
+        <h1 style={{ color: 'rgb(31, 29, 29)' }}>Registro</h1>
+        <form onSubmit={handleSubmit} className="register">
+          <input name="name" value={form.name} onChange={handleChange} placeholder="Nombre" />
+          <input name="last_name" value={form.last_name} onChange={handleChange} placeholder="Apellido" />
+          <input name="email" value={form.email} onChange={handleChange} placeholder="Email" />
+          <input name="number" value={form.number} onChange={handleChange} placeholder="Telefono" type="tel" />
+          <input name="password" value={form.password} onChange={handleChange} placeholder="Password" type="password" />
+          <div className='redirect-container'>
+            <a href="/login">¿Ya tienes cuenta?</a>
+          </div>
+          <button type="submit" disabled={loading}>{loading ? 'Registrando...' : 'Registrarse'}</button>
+          {msg && <p>{msg}</p>}
+        </form>
+      </div>
+      <Footer />
     </>
   )
 }
