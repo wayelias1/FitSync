@@ -28,7 +28,7 @@ export function Login({onLogin}) {
       })
 
       const text = await res.text()
-      console.log('LOGIN status:', res.status, 'body:', text)
+      //console.log('LOGIN status:', res.status, 'body:', text)
       const data = text ? JSON.parse(text) : {}
 
       //const data = await res.json()
@@ -48,7 +48,7 @@ export function Login({onLogin}) {
 
       window.location.href = '/home'
     } catch (err) {
-      console.error('Login error:', err)
+      //console.error('Login error:', err)
       setError(err.message || 'Error de conexión')
     } finally {
       setLoading(false)
