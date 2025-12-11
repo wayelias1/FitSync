@@ -25,7 +25,6 @@ def signnup():
         if not all([name, last_name, email, password_plaintext, number]):
             return jsonify({"message": "Faltan campos por llenar"}), 400
         
-<<<<<<< HEAD
         allowed_domains = ["@gmail.com", "@hotmail.com", "@outlook.com", "@yahoo.com"]
 
         email = (data.get("email") or "").strip()
@@ -38,7 +37,6 @@ def signnup():
         # Validar dominio permitido
         if not any(email.endswith(domain) for domain in allowed_domains):
             return jsonify({"message": "El correo debe ser de Gmail, Hotmail, Outlook o Yahoo"}), 400
-=======
         is_valid, password_message = validate_password(password_plaintext)
         if not is_valid:
             return jsonify({"message": password_message}), 400
@@ -54,7 +52,6 @@ def signnup():
         except EmailNotValidError as e:
             return jsonify({"message": f" la dirección de correo no es válida: {str(e)}"}), 400
         
->>>>>>> 1446745b37cd37dfc0a71627a12a2c72cc440bb8
         hashed_password = generate_password_hash(password_plaintext)
         password_encrypted = hashed_password 
         check_response = supabase.table("User").select("email, number").or_(
