@@ -9,7 +9,7 @@ from routes.sign_up import sign_up
 from routes.delete_user import delete_user
 from routes.get_users import get_users
 from routes.login import login
-from routes.payment_routes import plans_bp, create_payment_bp, user_payments_bp, exchange_bp, methods_bp, historial_bp, payment_bp
+from routes.payment_routes import plans_bp, create_payment_bp, user_payments_bp, exchange_bp, methods_bp, historial_bp, payment_bp, verify_and_upgrade_role_bp
 from keys import supabase
 from routes.logout import logout_bp
 from routes.gallery import gallery
@@ -39,11 +39,13 @@ app.register_blueprint(plans_bp, url_prefix='/api/plans')
 app.register_blueprint(create_payment_bp, url_prefix='/api/payments')
 app.register_blueprint(user_payments_bp, url_prefix='/api/my-payments')
 app.register_blueprint(methods_bp, url_prefix='/api/methods')
-
+app.register_blueprint(exchange_bp, url_prefix='/api/exchange')
 app.register_blueprint(historial_bp, url_prefix='/historial')
 app.register_blueprint(payment_bp, url_prefix='/api')
+app.register_blueprint(verify_and_upgrade_role_bp, url_prefix='/api/verify')
 app.register_blueprint(logout_bp, url_prefix='/logout')
 app.register_blueprint(gallery, url_prefix='/api/gallery')
+
 
 @app.route('/api/users', methods=['GET'])
 def get_all_users():

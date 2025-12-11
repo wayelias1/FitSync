@@ -121,6 +121,7 @@
 @media (max-width: 1024px) {
   .member-content {
     margin-right: 0;
+    padding: 0;
   }
   
   .renewal-card {
@@ -128,7 +129,7 @@
     bottom: auto;
     right: auto;
     margin-top: 2rem;
-    width: 100%;
+    width: auto;
   }
 }
 
@@ -200,7 +201,7 @@
     bottom: auto;
     left: auto;
     margin-top: 2rem;
-    width: 100%;
+    width: auto;
   }
 }
 
