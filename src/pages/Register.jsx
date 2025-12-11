@@ -81,7 +81,7 @@ export function Register() {
             <a href="/login">¿Ya tienes cuenta?</a>
           </div>
           <button type="submit" disabled={loading}>{loading ? 'Registrando...' : 'Registrarse'}</button>
-          {msg && <p>{msg}</p>}
+          {msg && <p className='message-error'>{msg}</p>}
         </form>
       </div>
       <Footer />
