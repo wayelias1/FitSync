@@ -89,3 +89,7 @@
 .back-button:hover {
     transform: scale(1.1);
 }
+
+.message-error{
+    color: var(--principal);
+}

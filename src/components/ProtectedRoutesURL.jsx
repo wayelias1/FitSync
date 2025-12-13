@@ -15,8 +15,8 @@ export default function ProtectedRoute({ children }) {
 
     fetch('http://localhost:5000/api/token/verify', {
       method: 'POST',
-      headers: { 
-        'Content-Type': 'application/json' 
+      headers: {
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({ access_token: token })
     })
@@ -34,7 +34,7 @@ export default function ProtectedRoute({ children }) {
   }, []);
 
   if (isValid === null) return <div className="loading-screen">Verificando sesión...</div>;
-  
+
   if (!isValid) {
     localStorage.removeItem('auth_token');
     localStorage.removeItem('auth_user');

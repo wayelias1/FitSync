@@ -14,7 +14,7 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
-
+# Configurar logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -157,7 +157,7 @@ class PaymentService:
             if not user_id:
                 return {'success': False, 'error': 'user_id es requerido'}
                 
-            # Obtiene los datos del usuario
+            # Obtener datos del usuario
             user_response = (self.supabase.table('User')
                            .select('email, name')
                            .eq('id_user', user_id)

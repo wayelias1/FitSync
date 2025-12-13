@@ -16,14 +16,29 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: Arial, sans-serif; /* Puedes ajustar la fuente */
+  font-family: Arial, sans-serif;
+  /* Puedes ajustar la fuente */
   color: var(--text-color);
   background-color: var(--primary-bg);
   color: var(--text-primary);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
+  transition: transform 0.3s ease-in-out;
+  transform: translateY(0);
+}
+
+/* Navbar visible */
+.navbar-container.visible {
+  transform: translateY(0);
+}
+
+/* Navbar oculto */
+.navbar-container.hidden {
+  transform: translateY(-100%);
 }
 
 /* === LOGO === */
@@ -100,15 +115,21 @@
 /* === DROPDOWN MENU === */
 .dropdown-menu {
   position: absolute;
-  top: calc(100% + 15px); /* More space */
+  top: calc(100% + 15px);
+  /* More space */
   right: 0;
-  width: 280px; /* Wider dropdown */
+  width: 280px;
+  /* Wider dropdown */
   background-color: var(--secondary-bg);
-  border-radius: 12px; /* Rounded corners */
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6); /* Softer, larger shadow */
+  border-radius: 12px;
+  /* Rounded corners */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  /* Softer, larger shadow */
   border: 1px solid var(--border-color);
-  overflow: hidden; /* Ensures children conform to border-radius */
-  animation: fadeIn 0.2s ease-out; /* Simple fade-in animation */
+  overflow: hidden;
+  /* Ensures children conform to border-radius */
+  animation: fadeIn 0.2s ease-out;
+  /* Simple fade-in animation */
   z-index: 1001;
 }
 
@@ -117,6 +138,7 @@
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -144,7 +166,8 @@
 }
 
 .user-avatar-icon-large {
-  font-size: 4rem; /* Larger avatar */
+  font-size: 4rem;
+  /* Larger avatar */
   color: var(--accent-color);
   margin-bottom: 12px;
 }
@@ -159,18 +182,18 @@
   color: #fff;
 }
 
-.menu-profile-container{
-  padding-right: 1rem;
+.menu-profile-container {
   position: relative;
   width: 100%;
   display: flex;
 }
 
-.menu-profile-container .navbar-links, .menu-profile-container .navbar-right{
+.menu-profile-container .navbar-links,
+.menu-profile-container .navbar-right {
   margin-left: auto;
 }
 
-.profile-menu{
+.profile-menu {
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -179,13 +202,15 @@
   background: transparent;
   color: var(--principal);
 }
-.profile-menu:hover, .profile-menu:focus{
+
+.profile-menu:hover,
+.profile-menu:focus {
   background: transparent;
   box-shadow: none;
   transform: none;
 }
 
-.profile-menu-content{
+.profile-menu-content {
   position: fixed;
   flex-direction: column;
   top: 5rem;
@@ -196,15 +221,18 @@
   gap: 1rem;
   width: max-content;
 }
-.profile-menu-item{
+
+.profile-menu-item {
   color: var(--principal);
   text-decoration: none;
   transition: all 0.3s ease;
 }
-.profile-menu-item:hover{
+
+.profile-menu-item:hover {
   color: var(--color-especial);
 }
-.profile-menu-content button:hover{
+
+.profile-menu-content button:hover {
   color: #fff;
 
   color: var(--text-primary);
@@ -241,24 +269,28 @@
   color: var(--text-secondary);
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease;
-  text-decoration: none; /* For Link components */
+  text-decoration: none;
+  /* For Link components */
 }
 
 .dropdown-item:hover {
-  background-color: rgba(255, 140, 66, 0.1); /* Accent color with low opacity */
+  background-color: rgba(255, 140, 66, 0.1);
+  /* Accent color with low opacity */
   color: var(--accent-color);
 }
 
-.dropdown-item > svg {
+.dropdown-item>svg {
   font-size: 1.1rem;
-  width: 20px; /* Ensure icons are aligned */
+  width: 20px;
+  /* Ensure icons are aligned */
   text-align: center;
 }
 
 /* Danger item for destructive actions */
 .dropdown-item.danger:hover {
   background-color: rgba(255, 77, 77, 0.1);
-  color: #ff4d4d; /* A bright red for danger */
+  color: #ff4d4d;
+  /* A bright red for danger */
 }
 
 .user-info {
@@ -331,7 +363,7 @@
     padding: 1rem 2rem;
     border-bottom: none;
   }
-  
+
   .navbar-menu-toggle {
     display: block;
   }
@@ -352,6 +384,7 @@
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

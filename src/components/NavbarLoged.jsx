@@ -9,6 +9,8 @@ export default function NavbarLoged() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [userName, setUserName] = useState('Invitado');
   const [userEmail, setUserEmail] = useState('user@example.com');
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const raw = localStorage.getItem('auth_user');
@@ -26,6 +28,29 @@ export default function NavbarLoged() {
     }
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Si hace scroll hacia abajo, ocultar navbar
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false);
+      }
+      // Si hace scroll hacia arriba, mostrar navbar
+      else if (currentScrollY < lastScrollY) {
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [lastScrollY]);
+
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
   const handleUpdateData = () => {
@@ -33,7 +58,7 @@ export default function NavbarLoged() {
     setIsDropdownOpen(false);
   };
 
- 
+
 
   const handleLogout = async () => {
     try {
@@ -56,21 +81,26 @@ export default function NavbarLoged() {
   }
 
   return (
-    <nav className="navbar-container">
+    <nav className={`navbar-container ${isVisible ? 'visible' : 'hidden'}`}>
       <div className="navbar-logo-name">
         <img src="/logo_fitsync.png" alt="logo_fitsync" className="logo-img" />
-         <NavLink to="/home" className="nav-link">
-        <span className="logo-text">FITCLUB</span>
+        <NavLink to="/home" className="nav-link">
+          <span className="logo-text">FITCLUB</span>
         </NavLink>
       </div>
+      <div className='navbar-menu'>
+        <button className='menu-mobile' onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          {isMenuOpen ? '≡' : 'X'}
+        </button>
+      </div>
 
-      <div className="navbar-right menu-profile-container">        
-          <div className={`navbar-links ${isMenuOpen ? 'open' : ''}`}>
-            <NavLink to="/home" className="nav-link">
-              <FaHome />
-              <span>Home</span>
-            </NavLink>
-            {/* <NavLink to="/classes" className="nav-link">
+      <div className="navbar-right menu-profile-container">
+        <div className={`navbar-links ${isMenuOpen ? '' : 'open'}`}>
+          <NavLink to="/home" className="nav-link">
+            <FaHome />
+            <span>Home</span>
+          </NavLink>
+          {/* <NavLink to="/classes" className="nav-link">
               <FaCalendarAlt />
               <span>Classes</span>
             </NavLink>
@@ -78,8 +108,8 @@ export default function NavbarLoged() {
               <FaDollarSign />
               <span>Pricing</span>
             </NavLink> */}
-          </div>
-        
+        </div>
+
         <div className="navbar-right">
           <div className="user-box" title={userName} onClick={toggleDropdown}>
             <FaUserCircle className="user-avatar-icon" />
@@ -98,11 +128,11 @@ export default function NavbarLoged() {
                   <FaUserCircle />
                   <span>Mi Perfil</span>
                 </Link>
-                 <Link to="/settings">
-                <button className="dropdown-item">
-                  <FaCog />
-                  <span>Ajustes</span>
-                </button>
+                <Link to="/settings">
+                  <button className="dropdown-item">
+                    <FaCog />
+                    <span>Ajustes</span>
+                  </button>
                 </Link>
               </div>
               <div className="dropdown-section">
@@ -110,12 +140,12 @@ export default function NavbarLoged() {
                   <FaSignOutAlt />
                   <span>Cerrar sesión</span>
                 </button>
-              <Link to="/eliminate-user">
-                <button className="dropdown-item danger">
-                  <FaUserMinus />
-                  <span>Eliminar cuenta</span>
-                </button>
-              </Link>
+                <Link to="/eliminate-user">
+                  <button className="dropdown-item danger">
+                    <FaUserMinus />
+                    <span>Eliminar cuenta</span>
+                  </button>
+                </Link>
               </div>
             </div>
           )}

@@ -1,10 +1,10 @@
 import '../styles/Gallery.css'
 import { useEffect, useState, useRef } from 'react';
 
-export default function Gallery({ isAdmin = false }) {
+export default function Gallery({ isAdmin }) {
 
     const [images, setImages] = useState([])
-    const [zoomSrc, setZoomSrc] = useState(null);
+    const [zoom, setZoom] = useState(null);
 
     useEffect(() => {
 
@@ -142,10 +142,8 @@ const deleteImage = async (id) => {
   }
 };
 
-
-    const toggleZoom = (src) => {
-        setZoomSrc(prev => (prev === src ? null : src));
-        imagen.classList.toggle("zoom");
+    const toggleZoom = (e) => {
+        e.target.classList.toggle("zoom");
     };
 
     return (
@@ -156,16 +154,17 @@ const deleteImage = async (id) => {
                         <h2>Gallery</h2>
                     </div>
                     {/* Recolocar el usar el ! en admin mientras no esta definida la vista de roles */}
-                      {!isAdmin ? (
+                    <div className='gallery-images'>
+                      {isAdmin ? (
                         <>
-                        <div className="gallery-images">
+                        {/* <div className="gallery-images"> */}
                           {images.map((img) => (
                             <div className='gallery-image-container' key={img.id}>
                               <img
                                 src={img.url} // ruta relativa a public/
                                 alt={img.alt || ''}
                                 className='gallery-image'
-                                onClick={() => toggleZoom(src)}
+                                onClick={toggleZoom}
                               />
                               <div className='gallery-image-actions'>
                                 <button className="edit-image" onClick={() => handleFileDialog(img.id)} >
@@ -187,23 +186,27 @@ const deleteImage = async (id) => {
                                 style={{ display: "none" }}
                                 onChange={handleFileChange}
                               />
-                        </div>
-
+                      {/*</div>*/}
                         </>
                     ) : (
-                      <div className="gallery-images">
+                      <>
+                      {/* <div className="gallery-images"> */}
                         {images.map((img) => (
+                          <div className='gallery-image-container' key={img.id}>
                             <img
                               key={img.id}
                               src={img.url} // ruta relativa a public/
                               alt={img.alt || ''}
                               className='gallery-image'
-                              onClick={() => toggleZoom(src)}
+                              onClick={toggleZoom}
                             />
+                          </div>
                         ))}
-                      </div>  
+                        {/*</div>*/}
+                      </>
+                      
                     )}
-                     
+                  </div>  
                 </div>
             </div>
         </section>
