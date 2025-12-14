@@ -11,8 +11,9 @@ login = Blueprint('login', __name__)
 def Login():
     try:
         data = request.get_json(silent=True) or {}
-        email = data.get("email")
+        #email = data.get("email")
         #password_plaintext = data.get('password_encrypted')
+        email = (data.get("email") or "").strip().lower()
         password_plaintext = data.get('password') or data.get('password_encrypted')
 
         if not email or not password_plaintext:
@@ -20,7 +21,7 @@ def Login():
         
         response = supabase.table('User').select('id_user, name, email, password_encrypted, id_rol').eq('email', email).limit(1).execute()
         # response = supabase.table('User').select('*').eq('email', email).eq('password_encrypted', password).execute()
-        user = response.data
+        #user = response.data
 
         rows = getattr(response, 'data', None) or (response.get('data') if hasattr(response, 'get') else None) or []
         if not rows:
@@ -30,13 +31,14 @@ def Login():
         #     return jsonify({"message": "Login successful", "user": user[0]}), 200
         # else:
         #     return jsonify({"message": "Invalid email or password"}), 401
-        if not user:
-            # Usuario no encontrado
-            return jsonify({"message": "Email invalido o contraseña invalida"}), 401
 
         user = rows[0]
         #user = user[0]
         stored_hash = user.get('password_encrypted') or ''
+
+        if not user:
+            # Usuario no encontrado
+            return jsonify({"message": "Email invalido o contraseña invalida"}), 401
 
         if not stored_hash or not check_password_hash(stored_hash, password_plaintext):
             # La contraseña no coincide con el hash

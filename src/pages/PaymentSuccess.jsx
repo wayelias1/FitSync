@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { FaCheckCircle, FaClock, FaEnvelope, FaBank } from 'react-icons/fa';
+import { FaCheckCircle, FaClock, FaEnvelope } from 'react-icons/fa';
 import '../styles/PaymentSuccess.css';
 
 export default function PaymentSuccess() {

@@ -2,7 +2,6 @@ import '../styles/Login.css';
 import { useEffect, useState } from 'react';
 import { FaEye, FaEyeSlash, FaArrowLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 export function Login({onLogin}) {
@@ -39,14 +38,15 @@ export function Login({onLogin}) {
       // ejemplo: backend puede devolver { token: '...', user: {...} } o { access_token: ... }
       const token = data.token ?? data.access_token ?? null
       const user = data.user ?? data
+      const actualUser = user.user || user
 
       if (token) localStorage.setItem('auth_token', token)
-      if (user) localStorage.setItem('auth_user', JSON.stringify(user))
-      console.log('Usuario recibido del backend:', user)
+      if (actualUser) localStorage.setItem('auth_user', JSON.stringify(actualUser))
+      //console.log('Usuario recibido del backend:', user)
 
       // Si el backend devuelve { user: {...} } en lugar de {...}
-      const actualUser = user.user || user
-      localStorage.setItem('auth_user', JSON.stringify(actualUser))
+      //const actualUser = user.user || user
+      //localStorage.setItem('auth_user', JSON.stringify(actualUser))
 
 
       // callback opcional para que la app padre maneje el login

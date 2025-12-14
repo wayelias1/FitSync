@@ -29,10 +29,28 @@ def signnup():
 
         email = (data.get("email") or "").strip()
 
-        # Validar formato general
         import re
+        
+
+        if len(password_plaintext) < 8:
+            return False, "La contraseña debe tener al menos 8 caracteres"
+        if not re.search(r"[A-Z]", password_plaintext):
+            return False, "La contraseña debe contener al menos una letra mayúscula"
+        if not re.search(r"[a-z]", password_plaintext):
+            return False, "La contraseña debe contener al menos una letra minúscula"
+        if not re.search(r"[!@#$%^&*(),.?\":{}|<>]", password_plaintext):
+            return False, "La contraseña debe contener al menos un caracter especial"
+
+        # Validar formato general
+        
         if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
             return jsonify({"message": "Formato de email inválido"}), 400
+        
+        pattern = r"^(0414|0416|0412|0424|0426)\d{7}$"
+        if len(number) > 11:
+            return False, "El número no puede tener más de 11 caracteres"
+        if not re.match(pattern, number):
+            return jsonify({"error": "Número inválido. Debe comenzar con una operadora valida"}), 400
 
         # Validar dominio permitido
         if not any(email.endswith(domain) for domain in allowed_domains):
