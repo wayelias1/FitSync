@@ -42,6 +42,12 @@ export function Login({onLogin}) {
 
       if (token) localStorage.setItem('auth_token', token)
       if (user) localStorage.setItem('auth_user', JSON.stringify(user))
+      console.log('Usuario recibido del backend:', user)
+
+      // Si el backend devuelve { user: {...} } en lugar de {...}
+      const actualUser = user.user || user
+      localStorage.setItem('auth_user', JSON.stringify(actualUser))
+
 
       // callback opcional para que la app padre maneje el login
       if (typeof onLogin === 'function') onLogin({ token, user })
