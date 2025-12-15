@@ -33,7 +33,7 @@ export default function ProtectedRoute({ children }) {
       });
   }, []);
 
-  if (isValid === null) return <div className="loading-screen">Verificando sesión...</div>;
+  if (isValid === null) return; //<div className="loading-screen">Verificando sesión...</div>
 
   if (!isValid) {
     localStorage.removeItem('auth_token');

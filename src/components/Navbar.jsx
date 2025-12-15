@@ -49,7 +49,7 @@ export default function Navbar() {
       <div className={`navbar-right-nav ${isMenuOpen ? '' : 'open'}`}>
         <a href="/login" className="nav-link">Iniciar Sesión</a>
         <a href="/register">
-          <button className="join-button">RESGISTRO</button>
+          <button className="join-button">REGISTRO</button>
         </a>
       </div>
     </nav>

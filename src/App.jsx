@@ -12,8 +12,6 @@ import Payment from './pages/Payment';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import PaymenSuccess from './pages/PaymentSuccess.jsx';
 
-// ⬅️ Lee credenciales desde .env
-const PAYPAL_CLIENT_ID = import.meta.env.VITE_PAYPAL_CLIENT_ID;
 
 function App() {
   return (

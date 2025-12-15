@@ -3,7 +3,6 @@ import { useNavigate, Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import { FaEye, FaEyeSlash, FaArrowLeft } from 'react-icons/fa';
 import '../styles/Register.css'
-import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
 export function Register() {
@@ -108,7 +107,7 @@ export function Register() {
             </button>
           </div>
           <div className='redirect-container'>
-            <a href="/login">¿Ya tienes cuenta?</a>
+            <a href="/login">¿Ya tienes cuenta? Inicia sesión</a>
           </div>
           <button className='submit' type="submit" disabled={loading}>{loading ? 'Registrando...' : 'Registrarse'}</button>
           {msg && <p className='message-error'>{msg}</p>}

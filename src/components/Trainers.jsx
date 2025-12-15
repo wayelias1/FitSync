@@ -59,6 +59,7 @@ export function Trainers() {
     <div className="class-schedule">
       <h2>Lista de Entrenadores</h2>
       <div className="schedule-list">
+        <button onClick={fetchTrainers}>Reintentar</button>
         {trainers.length > 0 ? (
           trainers.map((trainer) => (
             <div key={trainer.id} className="schedule-item trainer-item">

@@ -59,6 +59,7 @@ export function Nutritionists() {
     <div className="class-schedule">
       <h2>Lista de Nutricionistas</h2>
       <div className="schedule-list trainers-list">
+        <button onClick={fetchNutritionists}>Reintentar</button>
         {nutritionists.length > 0 ? (
           nutritionists.map((nutritionist) => (
             <div key={nutritionist.id} className="schedule-item trainer-item">

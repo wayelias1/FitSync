@@ -24,7 +24,7 @@ export default function ProtectedRoute({ children }) {
       .catch(() => setIsValid(false));
   }, []);
 
-  if (isValid === null) return //<p>Verificando sesión...</p>;
+  if (isValid === null) return;
   if (!isValid) {
     localStorage.removeItem('auth_token');
     return <Navigate to="/login" replace />;

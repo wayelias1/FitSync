@@ -9,6 +9,8 @@ import { useEffect, useState } from 'react';
 
 export function IndexPage() {
   const [isAdmin, setIsAdmin] = useState(false);
+  //const [isTrainer, setIsTrainer] = useState(false);
+  //const [isVip, setIsVip] = useState(false);
   useEffect(() => {
     const rawUser = localStorage.getItem("auth_user");
     const user = rawUser ? JSON.parse(rawUser) : null;
@@ -33,6 +35,8 @@ export function IndexPage() {
           //console.log("Datos del usuario:", data);
           //console.log(typeof data.id_rol, data.id_rol)
           setIsAdmin(Number(data.id_rol) === 4);
+          //setIsTrainer(Number(data.id_rol) === 3);
+          //setIsVip(Number(data.id_rol) === 2);
         })
         .catch((err) => console.error("Error fetching user:", err));
     }

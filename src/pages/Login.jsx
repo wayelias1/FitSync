@@ -98,9 +98,9 @@ export function Login({onLogin}) {
               </button>
             </div>
             <div className='redirect-container'>
-              <a href="/Register">No tienes cuenta?</a>
+              <a href="/Register">¿No tienes cuenta? Regístrate</a>
               <br />
-              <a href="/forgot">Olvidaste la contraseña?</a>
+              <a href="/forgot">¿Olvidaste tu contraseña?</a>
             </div>
             <button className='submit' type="submit" disabled={loading}>
               {loading ? 'Ingresando...' : 'Login'}
