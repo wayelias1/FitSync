@@ -10,4 +10,4 @@ python-dotenv        ==     1.2.1
 realtime             ==     2.23.2
 supabase              ==    2.23.2
 supabase-auth         ==    2.23.2
-supabase-functions     ==   2.23.2==
+supabase-functions     ==   2.23.2
