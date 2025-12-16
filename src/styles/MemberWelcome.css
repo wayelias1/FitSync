@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   min-height: 80vh;
-  background-image: url("/public/img/FitSync2.jpg");
+  background-image: url("img/FitSync2.webp");
   background-size: cover;
   background-position: center;
   width: 100%;

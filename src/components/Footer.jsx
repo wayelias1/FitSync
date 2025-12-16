@@ -9,7 +9,7 @@ export default function Footer() {
 
         <div className="footer-column brand-column">
             <div className="brand-info">
-                <span className="logo-icon">FS</span>
+                <span className="logo-icon"><img src="logo_fitsync.png" alt="FitSync" /></span>
                 <span className="logo-text">FitSync</span>
             </div>
             <ul>

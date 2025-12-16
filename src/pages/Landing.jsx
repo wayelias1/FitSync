@@ -12,7 +12,6 @@ export function Landing() {
     <>
 
       <Navbar />
-      <p>gei que vea esto</p>
       <Home />
       <Services />
       <Payment />
