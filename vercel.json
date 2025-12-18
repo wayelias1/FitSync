@@ -8,6 +8,10 @@
     }
   ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
+    { "source": "/(.*)", "destination": "/" },
+    { "source": "/api", "destination": "/index.html" },
+    { "source": "/signup", "destination": "/index.html" },
+    { "source": "/Login", "destination": "/index.html" },
+    { "source": "/user", "destination": "/index.html"}
   ]
 }
