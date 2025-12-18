@@ -9,9 +9,9 @@
   ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/" },
-    { "source": "/api", "destination": "/index.html" },
-    { "source": "/signup", "destination": "/index.html" },
-    { "source": "/Login", "destination": "/index.html" },
-    { "source": "/user", "destination": "/index.html"}
+    { "source": "/api", "destination": "https://api.render.com/deploy/srv-d50ceobe5dus73dbs0lg?key=Hy_-DXoP49I" },
+    { "source": "/signup", "destination": "https://api.render.com/deploy/srv-d50ceobe5dus73dbs0lg?key=Hy_-DXoP49I" },
+    { "source": "/Login", "destination": "https://api.render.com/deploy/srv-d50ceobe5dus73dbs0lg?key=Hy_-DXoP49I" },
+    { "source": "/user", "destination": "https://api.render.com/deploy/srv-d50ceobe5dus73dbs0lg?key=Hy_-DXoP49I"}
   ]
 }
