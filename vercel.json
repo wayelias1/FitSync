@@ -9,9 +9,9 @@
   ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/" },
-    { "source": "/api", "destination": "/index.html" },
-    { "source": "/signup", "destination": "/index.html" },
-    { "source": "/Login", "destination": "/index.html" },
-    { "source": "/user", "destination": "/index.html"}
+    { "source": "/api", "destination": "https://fitsync-d1x0.onrender.com/" },
+    { "source": "/signup", "destination": "https://fitsync-d1x0.onrender.com/" },
+    { "source": "/Login", "destination": "https://fitsync-d1x0.onrender.com/" },
+    { "source": "/user", "destination": "https://fitsync-d1x0.onrender.com/"}
   ]
 }
