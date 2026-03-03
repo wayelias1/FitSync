@@ -3,19 +3,19 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://fitsync-d1x0.onrender.com/api/:path*"
+      "destination": "https://fitsync-av4g.onrender.com/api/:path*"
     },
     {
       "source": "/signup",
-      "destination": "https://fitsync-d1x0.onrender.com/signup"
+      "destination": "https://fitsync-av4g.onrender.com/signup"
     },
     {
       "source": "/Login",
-      "destination": "https://fitsync-d1x0.onrender.com/Login"
+      "destination": "https://fitsync-av4g.onrender.com/Login"
     },
     {
       "source": "/user/:path*",
-      "destination": "https://fitsync-d1x0.onrender.com/user/:path*"
+      "destination": "https://fitsync-av4g.onrender.com/user/:path*"
     },
     {
       "source": "/(.*)",
