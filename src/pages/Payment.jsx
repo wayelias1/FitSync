@@ -144,7 +144,7 @@ export default function Payment() {
       // 1. Crear el pago
       const response = await fetch('/api/payments', {  
         method: 'POST',
-        credentials: 'include',
+
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
