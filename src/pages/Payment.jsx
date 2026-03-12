@@ -157,7 +157,7 @@ export default function Payment() {
       // Manejar error 401
       if (response.status === 401) {
         setMessage('❌ Sesión expirada. Por favor inicia sesión nuevamente.');
-        //localStorage.clear();
+        localStorage.clear();
         setTimeout(() => navigate('/login'), 2000);
         return;
       }
