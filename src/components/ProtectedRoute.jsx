@@ -14,7 +14,7 @@ export default function ProtectedRoute({ children }) {
     }
 
     fetch('/api/process-payment', {
-      method: 'GET',
+      method: 'POST',
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => {
