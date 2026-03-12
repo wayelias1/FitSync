@@ -9,7 +9,7 @@ export function MemberWelcome() {
 
   const [fechaActual, setFechaActual] = useState(new Date());
   const [fechaRenovacion, setFechaRenovacion] = useState(
-    new Date("2025-12-31")
+    new Date("2026-5-31")
   );
   const [diasRestantes, setDiasRestantes] = useState(0);
 
