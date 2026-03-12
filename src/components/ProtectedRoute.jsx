@@ -13,7 +13,7 @@ export default function ProtectedRoute({ children }) {
       return;
     }
 
-    fetch('http://localhost:5000/api/process-payment', {
+    fetch('/api/process-payment', {
   method: 'HEAD',
   headers: { Authorization: `Bearer ${token}` }
 })

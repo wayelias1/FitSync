@@ -19,6 +19,7 @@ export function MemberWelcome() {
   // Obtener el id_rol del usuario (1=user, 2=cliente, 3=admin, 4=trainer)
   const idRol = usuario?.id_rol ? Number(usuario.id_rol) : 1;
   const esCliente = idRol === 2;
+  const esSuper = idRol === 4 || idRol === 3;
 
   useEffect(() => {
     // Solo calcular fechas si el usuario es cliente (id_rol = 2)
@@ -50,7 +51,11 @@ export function MemberWelcome() {
       {/* Sección de renovación en esquina inferior izquierda */}
       <div className="renewal-card">
         <h3>Tu Membresía</h3>
-        {esCliente ? (
+        {esSuper ? (
+          <div className="renewal-info">
+            <p className="renewal-date">Actualmente eres un Super usuario</p>
+          </div>
+        ) : esCliente ? (
           // Usuario con id_rol = 2 (cliente): mostrar temporizador y permitir renovación
           <>
             <div className="renewal-info">

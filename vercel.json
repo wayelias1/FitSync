@@ -1,17 +1,25 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "dist" }
-    }
-  ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/" },
-    { "source": "/api", "destination": "https://api.render.com/deploy/srv-d50ceobe5dus73dbs0lg?key=Hy_-DXoP49I" },
-    { "source": "/signup", "destination": "https://api.render.com/deploy/srv-d50ceobe5dus73dbs0lg?key=Hy_-DXoP49I" },
-    { "source": "/Login", "destination": "https://api.render.com/deploy/srv-d50ceobe5dus73dbs0lg?key=Hy_-DXoP49I" },
-    { "source": "/user", "destination": "https://api.render.com/deploy/srv-d50ceobe5dus73dbs0lg?key=Hy_-DXoP49I"}
+    {
+      "source": "/api/:path*",
+      "destination": "https://fitsync-av4g.onrender.com/api/:path*"
+    },
+    {
+      "source": "/signup",
+      "destination": "https://fitsync-av4g.onrender.com/signup"
+    },
+    {
+      "source": "/Login",
+      "destination": "https://fitsync-av4g.onrender.com/Login"
+    },
+    {
+      "source": "/user/:path*",
+      "destination": "https://fitsync-av4g.onrender.com/user/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
 }

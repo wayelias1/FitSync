@@ -54,7 +54,7 @@ export function Settings() {
             }
 
             try {
-                const response = await fetch(`http://127.0.0.1:5000/user/${userId}`, {
+                const response = await fetch(`/user/${userId}`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -174,7 +174,7 @@ export function Settings() {
 
             console.log('Enviando datos a actualizar:', updateData);
 
-            const response = await fetch(`http://127.0.0.1:5000/api/user/update/${userId}`, {
+            const response = await fetch(`/api/user/update/${userId}`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${token}`,

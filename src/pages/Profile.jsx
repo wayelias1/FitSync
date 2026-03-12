@@ -47,7 +47,7 @@ export function Profile() {
             }
 
             try {
-                const response = await fetch(`http://127.0.0.1:5000/user/${userId}`, {
+                const response = await fetch(`/user/${userId}`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,

@@ -42,7 +42,7 @@ export default function EliminateUserPage() {
         try {
             // Nota: Usamos la URL completa si el proxy en vite.config.js no cubre '/user'
             // Si '/user' estuviera en el proxy, podrías usar '/user/delete/...'
-            const response = await fetch(`http://127.0.0.1:5000/user/delete/${userId}`, {
+            const response = await fetch(`/user/delete/${userId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`,

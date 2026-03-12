@@ -78,6 +78,7 @@ export function Register() {
       navigate('/home')
     } catch (err) {
       setMsg(err.message || 'Error inesperado')
+      setLoading(false)
     } finally {
       setLoading(false)
     }
