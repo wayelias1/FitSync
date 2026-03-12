@@ -14,9 +14,9 @@ export default function ProtectedRoute({ children }) {
     }
 
     fetch('/api/process-payment', {
-  method: 'HEAD',
-  headers: { Authorization: `Bearer ${token}` }
-})
+      method: 'GET',
+      headers: { Authorization: `Bearer ${token}` }
+    })
       .then(res => {
         if (res.status === 200) setIsValid(true);
         else setIsValid(false);
