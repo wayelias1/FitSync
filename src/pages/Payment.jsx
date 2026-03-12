@@ -144,7 +144,7 @@ export default function Payment() {
       // 1. Crear el pago
       const response = await fetch('/api/payments', {  
         method: 'POST',
-
+        
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
@@ -157,8 +157,9 @@ export default function Payment() {
       // Manejar error 401
       if (response.status === 401) {
         setMessage('❌ Sesión expirada. Por favor inicia sesión nuevamente.');
-        localStorage.clear();
-        setTimeout(() => navigate('/login'), 2000);
+        console.log('Error :', response.status);
+        //localStorage.clear();
+        //setTimeout(() => navigate('/login'), 2000);
         return;
       }
 
