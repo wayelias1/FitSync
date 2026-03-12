@@ -44,7 +44,7 @@ def get_payment_methods():
 
 # --- ENDPOINTS PRIVADOS (Requieren JWT) ---
 
-@create_payment_bp.route('/', methods=['POST'])
+@create_payment_bp.route('/', methods=['POST', 'OPTIONS'])
 @jwt_required()
 def create_order():
     current_user_id = get_jwt_identity()

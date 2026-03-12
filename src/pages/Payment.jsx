@@ -142,7 +142,7 @@ export default function Payment() {
       console.log('Enviando pago:', dataToSend);
 
       // 1. Crear el pago
-      const response = await fetch('/api/payments/', {  
+      const response = await fetch('/api/payments', {  
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
