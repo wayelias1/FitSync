@@ -156,6 +156,9 @@ export default function Payment() {
       
       // Manejar error 401
       if (response.status === 401) {
+        const errorData = await response.json();
+        console.error("ERROR 401 DETALLADO:", errorData);
+        setMessage(`❌ Error de autenticación: ${errorData.msg || 'Token inválido'}`);
         setMessage('❌ Sesión expirada. Por favor inicia sesión nuevamente.');
         console.log('Error :', response.status);
         //localStorage.clear();
